@@ -26,17 +26,29 @@
                 <tr>
                     <th>Top Streamers</th>
                     <th></th>
-                </tr>
-                <tr>
-                    <th>Channel Name</th>
-                    <th>Viewers</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody id="table_body">
-                {% for streamer in game_data %}
+                {% for streamer in streamer_data %}
                 <tr>
                     <td>{{ streamer }}</td>
-                    <td>{{ game_data[streamer].Viewers  }}</td>
+                    <td>{{ streamer_data[streamer].avg_viewership_rank  }}</td>
+                    <td>{{ streamer_data[streamer].avg_viewers }}</td>
+                    <td>{{ streamer_data[streamer].time_streamed }}</td>
+                    <td>{{ streamer_data[streamer].all_time_peak_viewers }}</td>
+                    <td>{{ streamer_data[streamer].hours_watched }}</td>
+                    <td>{{ streamer_data[streamer].overall_rank }}</td>
+                    <td>{{ streamer_data[streamer].followers_gained }}</td>
+                    <td>{{ streamer_data[streamer].total_followers }}</td>
+                    <td>{{ streamer_data[streamer].total_views }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
