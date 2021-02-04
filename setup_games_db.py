@@ -17,8 +17,8 @@ def setup_game_db():
     
     # format columns
 #     df['month'] = pd.to_datetime(df['month'], format='%d/%m/%y')
-    df['hours_watched'] = df['hours_watched'].map(lambda x: float(x.strip('M')) if 'M' in x else float(x.strip('K'))/1000000)
-    df['average_viewers(k)'] = df['average_viewers(k)'].map(lambda x: float(x.strip('K')))
+    df['hours_watched'] = df['hours_watched'].map(lambda x: int(x.strip('M')) if 'M' in x else float(x.strip('K'))/1000000)
+    df['average_viewers(k)'] = df['average_viewers(k)'].map(lambda x: float(x.strip('K')) if 'K' in x else float(x)/1000)
     df['average_concurrent_streams(k)'] = df['average_concurrent_streams(k)'].map(lambda x: float(x.strip('K')) if 'K' in x else float(x)/1000)
     df['peak_concurrent_streams(k)'] = df['peak_concurrent_streams(k)'].map(lambda x: float(x.strip('K')) if 'K' in x else float(x)/1000)
     df['peak_viewers(k)'] = df['peak_viewers(k)'].map(lambda x: float(x.strip('K')) if 'K' in x else float(x.strip('M'))*1000)
