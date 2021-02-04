@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Webpage name -->
+  <title>Twitch Project 2</title>
+  <!-- Link stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <!-- Set up Jumbotron section -->
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Twitch Project Test</h1>
+    </div>
+  </div>
+  <!-- Set up table section -->
+  <div class="container" id="streamers_table">
+    <div class="row">
+      <!-- <div class="col-md-5"> -->
+        <div id="bar"></div>
+      <!-- </div> -->
+    </div>
+    <!-- <div class="col-lg-12">
+        <table class="table table-striped" style="border: 2px solid black !important;">
+            <thead>
+                <tr>
+                    <th>Top Streamers</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>Channel Name</th>
+                    <th>Viewers</th>
+                </tr>
+            </thead>
+            <tbody id="table_body">
+            </tbody>
+        </table>
+    </div>     -->
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'app2.js') }}"></script>
+</body>
+
+</html>
