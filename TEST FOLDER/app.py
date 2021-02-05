@@ -30,11 +30,27 @@ def stations():
     # return render_template("index.html", streamer_data=streamer_data)
     return streamer_data
 
+<<<<<<< HEAD
 
 
 
 @app.route('/test3')
 def hours_watched(): 
+=======
+@app.route('/test2')
+def testing():
+    # Find one record of data from the mongo database
+    # streamer_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
+    streamer_data = mongo.db.streamer_sorted_data .find_one({}, {'_id': False})
+
+
+    # Return template and data
+    # return render_template("index.html", streamer_data=streamer_data)
+    return streamer_data
+
+@app.route('/game')
+def games():
+>>>>>>> 5197de2d1703a291dba4c5282fb7b899bd8d8498
     # Find one record of data from the mongo database
     # streamer_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
     streamer_data = mongo.db.streamer_sorted_data .find_one({}, {'_id': False})
