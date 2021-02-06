@@ -22,6 +22,11 @@
   <div class="container" id="streamers_table">
     <div class="row">
       <!-- <div class="col-md-5"> -->
+        <div id="lol_avg_views"></div>
+        <div id="fortnite_avg_views"></div>
+        <div id="csgo_avg_views"></div>
+        <div id="amongus_avg_views"></div>
+        <div id="cod_avg_views"></div>
         <div id="avg_viewers_bar"></div>
         <div id="total_views_bar"></div>
         <div id="peak_viewers_bar"></div>
@@ -49,6 +54,11 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'lol_avg_views.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'fortnite_avg_views.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'csgo_avg_views.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'amongus_avg_views.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename = 'cod_avg_views.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename = 'avg_viewers_bar.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename = 'total_views_bar.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename = 'peak_viewers_bar.js') }}"></script>
