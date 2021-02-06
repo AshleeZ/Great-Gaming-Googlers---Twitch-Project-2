@@ -1,0 +1,27 @@
+/* .center {
+    margin: 0 auto;
+    border: 3px solid #666862;
+    padding: 10px;
+  } */
+
+.navbar {
+  background-color: rgb(82, 46, 238);
+  border: 0px;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+  font-size: 200%;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: grey;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+
+.navbar-default .navbar-nav>li>a:hover {
+  color: grey;
+}

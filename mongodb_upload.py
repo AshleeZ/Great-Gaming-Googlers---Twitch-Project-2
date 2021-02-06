@@ -37,4 +37,4 @@ def update_db(collection, dictionary):
         mycol.drop()
         update = mycol.insert_one(dictionary)
     except:
-        print('This collection already exists. Change collection name or delete collection in mongodb before trying again.')   
+        update = mycol.insert_one(dictionary)

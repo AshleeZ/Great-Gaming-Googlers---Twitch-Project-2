@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Webpage name -->
+  <title>>GGG Influencers</title>
+  <!-- Link stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
+  <!-- <link rel="stylesheet" href="games.css"> -->
+</head>
+
+<body>
+    <!-- Set up navbar -->
+    <div class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header" style="float:left">
+                <a href="/" class="navbar-brand">GGG Influencers</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li>
+                        <a href="/topstreamers">Top Live Streamers</a>
+                    </li>
+                    <li>
+                        <a href="/games">Games</a>
+                    </li>
+                    <li>
+                        <a href="/ourteam">Our Team</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-2" id="category">
+                <h3>Game Category</h3>
+                <select id="select_category"></select>
+                <div class="center">
+                    <h3>Games</h3>
+                    <ul id="games">
+                    </ul>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-8">
+                <h3 id="game_name">{{ game }}</h3>
+                <div id="chart_group"></div>
+                <div>
+                    <h4>Streamers</h4>
+                    <ol id="streamer_list"></ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'gameselect.js') }}"></script>
+</body>
+
+</html>

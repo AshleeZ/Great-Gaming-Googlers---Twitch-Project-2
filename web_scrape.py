@@ -34,6 +34,8 @@ def scrape_top_steamers():
             info = cell.get_text()
             streamer_info.append(info)
         streamers_list.append(streamer_info)
+    # close browser
+    browser.quit()
     # define list of column names for dataframe
     column_headers = ['avg_viewership_rank','picture','channel_name','avg_viewers','time_streamed','all_time_peak_viewers',
                      'hours_watched','overall_rank','followers_gained','total_followers','total_views']
@@ -86,6 +88,7 @@ def scrape_game_data(url):
         for streamer in viewers_list:
             viewership = streamer.get_text()
             viewers.append(viewership)
+    viewers = [int(viewer.replace(',','')) for viewer in viewers]
     
     # close browser
     browser.quit()

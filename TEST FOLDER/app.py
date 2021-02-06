@@ -22,14 +22,25 @@ def home():
 
 @app.route('/test')
 def stations():
-    # Find one record of data from the mongo database
-    # streamer_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
-    streamer_data = mongo.db.streamer_sorted_data .find_one({}, {'_id': False})
-
-
-    # Return template and data
-    # return render_template("index.html", streamer_data=streamer_data)
+    streamer_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
     return streamer_data
+
+@app.route('/games')
+def games_page():
+    return render_template("games.html")
+
+@app.route('/games/<game>')
+def game_profile(game):
+    return 'This profile page is for ' + game
+
+@app.route('/streamers')
+def amongus():
+    streamer = mongo.db.target_streamer.find_one({}, {'_id': False})
+    return streamer
+
+@app.route('/streamer/<channel>')
+def streamer(channel):
+    return 'welcome to profile page %s' %channel
 
 if __name__ == "__main__":
     app.run(debug=True)
