@@ -1,85 +1,69 @@
 <!DOCTYPE html>
-<html lang="en-US" class>
+<html lang="en">
 
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>GGG Influencers</title>
-        <link rel="icon" href="logo.png">
-        <link rel="stylesheet" href="styles.css">
-    </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Webpage name -->
+  <title>>GGG Influencers</title>
+  <!-- Link stylesheets -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'css/styles.css') }}">
+  <!-- <link rel="stylesheet" href="games.css"> -->
+</head>
 
-    <header>
-      <body>
+<body>
+    <!-- Set up navbar -->
+    <div class="navbar navbar-default">
         <div class="container">
-              <nav>
-                    <input type="checkbox" id="nav" class="hidden">
-                    <label for="nav" class="nav-btn">
-                          <i></i>
-                          <i></i>
-                          <i></i>
-                    </label>
-                    <div class="logo">
-                      
-                        <img src="logo.png" alt="Glogo"/>    
-                        <a href="#">GGG Influencers</a>
-                    </div>
-                    <div class="nav-wrapper">
-                          <ul>
-                                <li><a href="Home.Html">Home</a></li>
-                                <li><a href="Home.Html">About</a></li>
-                                <li><a href="Games.html">Games</a></li>
-                                <li><a href="Home.html">Our Team</a></li>
-                                
-                          </ul>
-                    </div>
-              </nav>
+            <div class="navbar-header" style="float:left">
+                <a href="/" class="navbar-brand">GGG Influencers</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/about">About</a>
+                    </li>
+                    <li>
+                        <a href="/topstreamers">Top Live Streamers</a>
+                    </li>
+                    <li>
+                        <a href="/games">Games</a>
+                    </li>
+                    <li>
+                        <a href="/ourteam">Our Team</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </header>
-
-    <body>
-            <!-- Set up Jumbotron section -->
-            <div class="container-fluid">
-              <div class="jumbotron text-center">
-                  <h1 style="text-align:center;">Twitch Data</h1>
-              </div>
+    </div>
+    <div class="row">
+        <div class="container">
+            <div class="col-md-2" id="category">
+                <h3>Game Category</h3>
+                <select id="select_category"></select>
+                <div class="center">
+                    <h3>Games</h3>
+                    <ul id="games">
+                    </ul>
+                </div>
             </div>
-            <!-- Set up table section -->
-            <div class="container" id="streamers_table">
-              <div class="row">
-                <!-- <div class="col-md-5"> -->
-                  <div id="lol_avg_views"></div>
-                  <div id="fortnite_avg_views"></div>
-                  <div id="csgo_avg_views"></div>
-                  <div id="amongus_avg_views"></div>
-                  <div id="cod_avg_views"></div>
-                  <div id="avg_viewers_bar"></div>
-                  <div id="total_views_bar"></div>
-                  <div id="peak_viewers_bar"></div>
-                  <div id="hours_watched_bar"></div>
-                  <div id="followers_bar"></div>
-                  <div id="time_streamed_bar"></div>
-                <!-- </div> -->
-              </div>
+            <br>
+            <div class="col-md-8">
+                <h3 id="game_name">{{ game }}</h3>
+                <div id="chart_group"></div>
+                <div>
+                    <h4>Streamers</h4>
+                    <ol id="streamer_list"></ol>
+                </div>
             </div>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-          
-            <script type="text/javascript" src="{{ url_for('static', filename = 'barchart.js') }}"></script>
-          
-            <script type="text/javascript" src="{{ url_for('static', filename = 'lol_avg_views.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'fortnite_avg_views.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'csgo_avg_views.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'amongus_avg_views.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'cod_avg_views.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'avg_viewers_bar.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'total_views_bar.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'peak_viewers_bar.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'hours_watched_bar.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'followers_bar.js') }}"></script>
-            <script type="text/javascript" src="{{ url_for('static', filename = 'time_streamed_bar.js') }}"></script>
+        </div>
+    </div>
 
-    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'gameselect.js') }}"></script>
+</body>
 
 </html>
