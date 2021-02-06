@@ -1,8 +1,10 @@
 # Import dependencies
 from flask import Flask, render_template, redirect, jsonify
 from flask_pymongo import PyMongo
+import pandas as pd
 from web_scrape import scrape_top_steamers, scrape_game_data, scrape_streamer_data
 from mongodb_upload import df_rows_todict, df_columns_todict, upload_db, update_db
+
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -43,6 +45,7 @@ def games_page():
 def our_team():
     return 'This is our TEAM page.'
 
+
 @app.route('/games/<game>')
 def game_profile(game):
     games_dict = {'leagueoflegends':'21779', 'dota2':'29595', 'smite':'32507', 'fortnite':'33214', 'callofduty':'512710', 'csgo':'32399', 'chess':'743', 'amongus':'510218', 'hearthstone':'138585'}
@@ -74,6 +77,130 @@ def streamer(channel):
 def streamer_data():
     streamer_data = mongo.db.target_streamer.find_one({}, {'_id': False})
     return streamer_data
+
+
+@app.route('/graphs')
+def graphs():
+    return render_template('graphs.html')
+
+
+
+@app.route('/cod')
+def cod_database():
+    # Find one record of data from the mongo database
+    cod_data = mongo.db.cod_db.find_one({}, {'_id': False}, sort=[('hours_watched', 1)])
+    table = pd.DataFrame(cod_data)
+    new_table = table.transpose()
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.sort_index(inplace=True)
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.reset_index(level=0, inplace=True)
+    new_table['index']=pd.to_datetime(new_table['index'])
+    df = new_table[['index', 'average_viewers(k)']]
+    df.sort_values(by = ['index'])
+    new_df = df.copy()
+    new_df['index'] = new_df['index'].astype(str)
+    cod = new_df.set_index('index').T.to_dict('list')
+
+    # Return template and data
+    # return render_template("index.html", streamer_data=streamer_data)
+    return cod
+
+
+
+
+@app.route('/among_us')
+def amongus_database():
+    # Find one record of data from the mongo database
+    amongus_data = mongo.db.amongus_db.find_one({}, {'_id': False}, sort=[('hours_watched', 1)])
+    table = pd.DataFrame(amongus_data)
+    new_table = table.transpose()
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.sort_index(inplace=True)
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.reset_index(level=0, inplace=True)
+    new_table['index']=pd.to_datetime(new_table['index'])
+    df = new_table[['index', 'average_viewers(k)']]
+    df.sort_values(by = ['index'])
+    new_df = df.copy()
+    new_df['index'] = new_df['index'].astype(str)
+    amongus = new_df.set_index('index').T.to_dict('list')
+    
+
+    # Return template and data
+    # return render_template("index.html", streamer_data=streamer_data)
+    return amongus
+
+
+@app.route('/csgo')
+def csgo_database():
+    # Find one record of data from the mongo database
+    csgo_data = mongo.db.csgo_db.find_one({}, {'_id': False}, sort=[('hours_watched', 1)])
+    table = pd.DataFrame(csgo_data)
+    new_table = table.transpose()
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.sort_index(inplace=True)
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.reset_index(level=0, inplace=True)
+    new_table['index']=pd.to_datetime(new_table['index'])
+    df = new_table[['index', 'average_viewers(k)']]
+    df.sort_values(by = ['index'])
+    new_df = df.copy()
+    new_df['index'] = new_df['index'].astype(str)
+    cs_go = new_df.set_index('index').T.to_dict('list')
+    
+
+    # Return template and data
+    # return render_template("index.html", streamer_data=streamer_data)
+    return cs_go
+
+@app.route('/fortnite')
+def fortnite_database():
+    # Find one record of data from the mongo database
+    fortnite_data = mongo.db.fortnite_db.find_one({}, {'_id': False}, sort=[('hours_watched', 1)])
+    table = pd.DataFrame(fortnite_data)
+    new_table = table.transpose()
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.sort_index(inplace=True)
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.reset_index(level=0, inplace=True)
+    new_table['index']=pd.to_datetime(new_table['index'])
+    df = new_table[['index', 'average_viewers(k)']]
+    df.sort_values(by = ['index'])
+    new_df = df.copy()
+    new_df['index'] = new_df['index'].astype(str)
+    fort_nite = new_df.set_index('index').T.to_dict('list')
+    
+
+    # Return template and data
+    # return render_template("index.html", streamer_data=streamer_data)
+    return fort_nite
+
+@app.route('/lol')
+def lol_database():
+    # Find one record of data from the mongo database
+    lol_data = mongo.db.lol_db.find_one({}, {'_id': False}, sort=[('hours_watched', 1)])
+    table = pd.DataFrame(lol_data)
+    new_table = table.transpose()
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.sort_index(inplace=True)
+    new_table.index = pd.to_datetime(new_table.index)
+    new_table.reset_index(level=0, inplace=True)
+    new_table['index']=pd.to_datetime(new_table['index'])
+    df = new_table[['index', 'average_viewers(k)']]
+    df.sort_values(by = ['index'])
+    new_df = df.copy()
+    new_df['index'] = new_df['index'].astype(str)
+    l_o_l= new_df.set_index('index').T.to_dict('list')
+    
+
+    # Return template and data
+    # return render_template("index.html", streamer_data=streamer_data)
+    return l_o_l
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
