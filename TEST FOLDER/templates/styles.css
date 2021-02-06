@@ -12,44 +12,33 @@ html {
 body {
   margin: 0;
   padding: 0;
-  width: 90%;
+  width: 100%;
   height: 100vh;
   font-family: Poppins;
   font-weight: 400;
-  background: url();
+  background: url(background-img.jpg);
   background-position: center;
   background-size: cover;
 }
 
 nav {
-  padding: 12px;
-}
-
-.logo img{
-  float: left;
-  width: 35px;
-  height: 35px;
-  margin-top: 0px;
-  
+  padding: 8px;
 }
 
 .logo {
   float: left;
-  padding: 10px;
+  padding: 8px;
   margin-left: 16px;
   margin-top: 8px;
 }
 
 .logo a {
-  color: rgb(0, 0, 0);
+  color: #000;
   text-transform: uppercase;
-  font-weight: 1000;
-  font-size: 25px;
-  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0px;
   text-decoration: none;
-  vertical-align: sub;
-  height: 50px;
-  -webkit-text-stroke-width-color: 1px black;
 }
 
 nav ul {
@@ -62,7 +51,7 @@ nav ul li {
 }
 
 nav ul li:not(:first-child) {
-  margin-left: 35px;
+  margin-left: 48px;
 }
 
 nav ul li:last-child {
@@ -72,17 +61,12 @@ nav ul li:last-child {
 nav ul li a {
   display: inline-block;
   outline: none;
-  color: rgb(255, 255, 255);
+  color: #000;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 14px;
   letter-spacing: 1.2px;
   font-weight: 600;
-  padding: 3px
-}
-
-nav ul li a:hover{
-  background: rgb(253,165,15);
 }
 
 @media screen and (max-width: 864px) {
@@ -97,10 +81,9 @@ nav ul li a:hover{
         width: 100%;
         height: 100%;
         z-index: -1;
-        background: rgb(100, 65, 165);
+        background: rgb(255, 255, 255);
         opacity: 0;
         transition: all 0.2s ease;
-        padding: 10px;
   }
 
   .nav-wrapper ul {
@@ -116,6 +99,10 @@ nav ul li a:hover{
         width: 100%;
         text-align: right;
         margin-bottom: 10px;
+  }
+
+  .nav-wrapper:hover{
+    color: rgb(100, 65, 165);
   }
 
   .nav-wrapper ul li:nth-child(1) a {
@@ -141,7 +128,7 @@ nav ul li a:hover{
   .nav-wrapper ul li a {
         padding: 10px 24px;
         opacity: 0;
-        color: rgb(0, 0, 0);
+        color: #000;
         font-size: 14px;
         font-weight: 600;
         letter-spacing: 1.2px;
@@ -217,30 +204,4 @@ nav ul li a:hover{
 
 .hidden {
   display: none;
-}
-
-.container p{
-  line-height: 200px;
-}
-
-.container{
-  width: 80%;
-  margin: 0 auto;
-}
-
-.nav-wrapper ul{
-  width: 100%;        
-  background:#6441a5;
-  padding: 8px;
-}
-
-.mySlides{
-  display:none;
-}
-
-img.mySlides{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
 }
