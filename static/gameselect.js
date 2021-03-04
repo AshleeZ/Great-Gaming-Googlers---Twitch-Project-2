@@ -38,13 +38,82 @@ function populate_games() {
 
 d3.select("#select_category").on("change", populate_games);
 
+function populate_stats() {
+
+    var game_name = d3.select('#game_name').text();
+    game_name = game_name.toLowerCase();
+    game_name = game_name.replace(" ", "%20")
+    var url = 'http://localhost:5000/gamestats/' + game_name
+    d3.json(url).then(function(data) {
+        var dates = [];
+        var avg_viewers = [];
+        Object.entries(data).forEach(([index,metric]) => {
+            dates.push(index)
+            avg_viewers.push(metric['average_viewers(k)'])
+        });
+    
+        var trace = {
+            x: dates,
+            y: avg_viewers,
+            marker: {color: 'rgb(110, 180, 6)'},
+            type: 'scatter',
+            orientation: 'v'
+        };
+    
+        var data = [trace];
+        var layout = {
+            title: {
+                text: 'Average Viewers',
+                font: {
+                    size: 24,
+                    color: 'rgb(82, 46, 238)'
+                },
+            },
+            xaxis: {
+                title: {
+                    text: 'Date',
+                    font: {
+                        size: 18,
+                        color: 'rgb(82, 46, 238)'
+                    }
+                },
+            },
+            yaxis: {
+                title: {
+                    text: 'Viewers (k)',
+                    font: {
+                        size: 18,
+                        color: 'rgb(82, 46, 238)'
+                    }
+                },
+            },
+            autosize: false,
+            width: 1000,
+            height: 500,
+            margin: {
+              l: 200,
+              r: 50,
+              b: 100,
+              t: 100,
+              pad: 4
+            },
+        };
+        
+        var chart = d3.selectAll('#game_stats').node();
+        Plotly.newPlot(chart, data, layout);
+    })
+
+}
+
+populate_stats();
+
 function populate_chart() {
 
     d3.json('http://localhost:5000/targetgamedata').then(function(data) {
         
         var streamers = [];
         var viewers = [];
-        var game_name = d3.select('#game_name').text()
+        var game_name = d3.select('#game_name').text();
 
         Object.entries(data).forEach(([channel,metric]) => {
             streamers.push(channel)
@@ -66,7 +135,7 @@ function populate_chart() {
         var data = [trace];
         var layout = {
             title: {
-                text: 'Top Streamers for ' + game_name,
+                text: 'Top Streamers for Game',
                 font: {
                     size: 24,
                     color: 'rgb(82, 46, 238)'

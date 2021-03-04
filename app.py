@@ -13,19 +13,7 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/project2")
 # Route to render index.html template using data from Mongo
 @app.route("/")
 def home():
-
-    # Find one record of data from the mongo database
-    # streamer_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
-    streamer_data = mongo.db.streamer_sorted_data .find_one({}, {'_id': False})
-
-    # Return template and data
-    # return render_template("index.html", streamer_data=streamer_data)
-    return render_template("index.html", streamer_data=streamer_data)
-
-@app.route('/test')
-def stations():
-    streamer_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
-    return streamer_data
+    return 'Welcome to the Home Page'
 
 @app.route('/about')
 def about():
@@ -33,7 +21,11 @@ def about():
 
 @app.route('/topstreamers')
 def top_streamers():
-    return 'This is our TOP STREAMERS page.'
+    df = scrape_top_steamers()
+    dictionary = df_rows_todict(df)
+    collection = 'streamer_sorted_data'
+    upload = update_db(collection, dictionary)
+    return render_template('top_streamers.html')
 
 @app.route('/games')
 def games_page():
@@ -60,6 +52,20 @@ def game_data():
     game_data = mongo.db.target_game.find_one({}, {'_id': False})
     return game_data
 
+@app.route('/gamestats/<game>')
+def game_stats(game):
+    if game == 'league of legends':
+        game_stats_data = mongo.db.lol_db.find_one({}, {'_id': False})
+    elif game == 'among us':
+        game_stats_data = mongo.db.amongus_db.find_one({}, {'_id': False})
+    elif game == 'call of duty':
+        game_stats_data = mongo.db.cod_db.find_one({}, {'_id': False})
+    elif game == 'fortnite':
+        game_stats_data = mongo.db.fortnite_db.find_one({}, {'_id': False})
+    else:
+        game_stats_data = mongo.db.csgo_db.find_one({}, {'_id': False})
+    return game_stats_data
+
 @app.route('/streamer/<channel>')
 def streamer(channel):
     channel_name = channel.lower()
@@ -74,6 +80,11 @@ def streamer(channel):
 def streamer_data():
     streamer_data = mongo.db.target_streamer.find_one({}, {'_id': False})
     return streamer_data
+
+@app.route('/topstreamersdata')
+def top_streamers_data():
+    streamers_data = mongo.db.streamer_sorted_data.find_one({}, {'_id': False})
+    return streamers_data
 
 if __name__ == "__main__":
     app.run(debug=True)
